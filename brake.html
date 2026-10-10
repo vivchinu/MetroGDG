@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brake Control MR</title>
+  <meta name="description" content="Mixed reality guide for a metro Brake Control Unit fault: anchor the 3D unit, see the fault and follow the steps with hand tracking. Works offline on Meta Quest 3 and phones.">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/brake.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/three.module.min.js" } }
+  </script>
+</head>
+<body class="brake-page">
+  <header class="topbar">
+    <div class="brand">
+      <a href="./" class="btn ghost back-link" aria-label="Metro Fix Assist">←</a>
+      <div>
+        <h1 data-s="pageTitle">Brake Control Unit · MR</h1>
+        <p class="tagline" data-s="pageSub"></p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="badge ok" id="offline-chip">● <span class="badge-text" data-s="offline"></span></span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="gu">ગુ</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="brake-layout">
+    <section class="viewer-card">
+      <div id="viewer" class="viewer">
+        <div id="part-tip" class="part-tip" hidden></div>
+        <div class="viewer-actions">
+          <button type="button" id="btn-cover" class="btn dark">▣ <span data-s="cover"></span></button>
+          <button type="button" id="btn-view" class="btn dark">⟲ <span data-s="resetView"></span></button>
+        </div>
+        <p class="viewer-hint" data-s="viewHint"></p>
+      </div>
+      <button type="button" id="btn-mr" class="btn primary big mr-button" hidden></button>
+      <p id="mr-note" class="muted small mr-note"></p>
+    </section>
+
+    <aside class="card guide-card">
+      <div class="tabs" role="tablist">
+        <button type="button" data-tab="overview" data-s="overview"></button>
+        <button type="button" data-tab="steps" data-s="steps"></button>
+        <button type="button" data-tab="report" data-s="report"></button>
+      </div>
+
+      <div id="tab-overview" class="tab-body">
+        <div class="unit-head">
+          <div>
+            <h2 data-s="unitName"></h2>
+            <p class="muted small" id="unit-meta"></p>
+          </div>
+          <span class="critical">⚠ <span data-s="critical"></span></span>
+        </div>
+        <div class="fault-box">
+          <b id="fault-title"></b>
+          <p id="fault-detail"></p>
+        </div>
+        <h3 data-s="recommended"></h3>
+        <ol id="rec-list" class="rec-list"></ol>
+        <button type="button" id="btn-start" class="btn primary big wide"></button>
+      </div>
+
+      <div id="tab-steps" class="tab-body" hidden>
+        <div id="safety-box" class="safety"></div>
+        <div id="step-view">
+          <p class="step-count" id="step-count"></p>
+          <div class="segments" id="segments"></div>
+          <h2 id="step-title"></h2>
+          <p id="step-detail" class="step-detail"></p>
+          <div class="expect"><b>✓ <span data-s="expected"></span></b><p id="step-expect"></p></div>
+        </div>
+        <div class="step-nav">
+          <button type="button" id="btn-back" class="btn secondary">◀ <span data-s="back"></span></button>
+          <button type="button" id="btn-speak" class="btn secondary" aria-label="Read aloud">🔊</button>
+          <button type="button" id="btn-next" class="btn primary"></button>
+        </div>
+      </div>
+
+      <div id="tab-report" class="tab-body" hidden>
+        <h3 data-s="observations"></h3>
+        <div id="obs-chips" class="chips"></div>
+        <label class="label" for="notes" data-s="notes"></label>
+        <textarea id="notes" rows="3"></textarea>
+        <p class="muted small" id="report-summary"></p>
+        <button type="button" id="btn-save" class="btn primary big wide"></button>
+        <h3 data-s="savedReports"></h3>
+        <ul id="report-list" class="report-list"></ul>
+      </div>
+    </aside>
+
+    <section class="flow">
+      <div class="flow-item"><span>1</span><b data-s="flow1"></b><p data-s="flow1d"></p></div>
+      <div class="flow-item"><span>2</span><b data-s="flow2"></b><p data-s="flow2d"></p></div>
+      <div class="flow-item"><span>3</span><b data-s="flow3"></b><p data-s="flow3d"></p></div>
+      <div class="flow-item"><span>4</span><b data-s="flow4"></b><p data-s="flow4d"></p></div>
+      <div class="flow-item"><span>5</span><b data-s="flow5"></b><p data-s="flow5d"></p></div>
+    </section>
+  </main>
+
+  <!-- Phone AR DOM overlay -->
+  <div id="xr-overlay" class="xr-overlay" hidden>
+    <div class="xr-top">
+      <button type="button" data-act="exit" class="btn dark">✕</button>
+      <p class="xr-hint"></p>
+    </div>
+    <div class="step-card">
+      <p class="step-label"></p>
+      <div class="step-text"></div>
+      <div class="step-actions">
+        <button type="button" data-act="back" class="btn dark">◀</button>
+        <button type="button" data-act="speak" class="btn dark">🔊</button>
+        <button type="button" data-act="tool:cover" class="btn dark">▣</button>
+        <button type="button" data-act="tool:anchor" class="btn dark">⚓</button>
+        <button type="button" data-act="next" class="btn primary">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="js/brake/main.js"></script>
+</body>
+</html>

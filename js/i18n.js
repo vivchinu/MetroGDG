@@ -71,6 +71,9 @@ const STRINGS = {
     cameraUnavailable: 'Camera is not available here. Use Photo to pick an image instead.',
     xrUnavailable: 'AR/VR is not available on this device. Showing camera view instead.',
     demoNote: 'Demo content',
+    mrBrakeTitle: 'Brake Control Unit: mixed reality guide',
+    mrBrakeSub: 'Anchor the 3D unit, see the fault, follow the steps with your hands (Quest 3 / phone)',
+    open3d: '3D / MR brake unit',
     procedure: 'Procedure',
     confidence: 'match',
     helpHtml: `
@@ -159,6 +162,9 @@ const STRINGS = {
     cameraUnavailable: 'અહીં કેમેરા ઉપલબ્ધ નથી. તેના બદલે ફોટો પસંદ કરો.',
     xrUnavailable: 'આ ઉપકરણ પર AR/VR ઉપલબ્ધ નથી. તેના બદલે કેમેરા વ્યૂ બતાવે છે.',
     demoNote: 'ડેમો સામગ્રી',
+    mrBrakeTitle: 'બ્રેક કંટ્રોલ યુનિટ: મિક્સ્ડ રિયાલિટી માર્ગદર્શિકા',
+    mrBrakeSub: '3D યુનિટ એન્કર કરો, ખામી જુઓ, હાથથી પગલાં અનુસરો (Quest 3 / ફોન)',
+    open3d: '3D / MR બ્રેક યુનિટ',
     procedure: 'પ્રક્રિયા',
     confidence: 'મેળ',
     helpHtml: `

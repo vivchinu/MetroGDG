@@ -42,6 +42,35 @@ ticked in AR is ticked on the page.
 
 WebXR and the camera need a **secure context** (HTTPS, or `localhost`).
 
+## Brake Control Unit: mixed reality guide (`brake.html`)
+
+An interactive mixed reality experience for a Brake Control Unit fault (BCU-E51,
+brake not released on bogie 2), linked from the Assist screen and from the brake procedure.
+
+* **3D unit, built in code:** a BCU enclosure with a hinged cover, fault display and LEDs,
+  RESET button, terminal block TB1, connectors X1/X2, EP valve manifold, pressure
+  sensors PT1/PT2, a brake-cylinder gauge stuck at 3.6 bar, an isolation cock and the
+  electronics module inside. No model files are needed, so it works offline.
+* **See the problem:** the faulty unit glows red with corner brackets, a warning sign and a
+  callout ("Brake Control Unit · Fault detected · E51"). Each step highlights the part to
+  check in cyan, with its own label. Step 6 opens the cover to show the module.
+* **Anchor it:** point and pinch (hands), pull the trigger (controllers) or tap (phone) on
+  the real brake unit, the floor or a table. The model is held by a **WebXR anchor**. On
+  Quest it is also saved as a persistent anchor, so it comes back in the same place next
+  session. The ray falls back to the floor plane if no hit-test result is available.
+* **Hand tracking:** poke the panel buttons with your index finger (hover at 5 cm, press
+  when the fingertip crosses the panel), or pinch-ray from a distance. Pinch inside the
+  model to grab and move it; it is re-anchored when you let go. Turn your left palm towards
+  you for a wrist menu (Anchor / Cover / Read / Exit). Controllers work too: trigger
+  selects, grip grabs.
+* **Panels:** Overview (unit, carriage, location, Critical badge, fault, recommended
+  actions), Steps (step x of 6, details, expected value, Back / Read aloud / Next), and
+  Report (observation chips, Save report). The toolbar has Anchor, Cover, Size (1:1, 1:2,
+  1:4) and EN/ગુ.
+* **Without a headset:** the same page is a 3D viewer (drag to rotate, tap a part to jump to
+  its step), with the guide and reports beside it. On Android the AR session adds a
+  touch overlay.
+
 ## Run it
 
 No build step. It is plain static files with all libraries vendored in `vendor/`.
@@ -96,6 +125,9 @@ js/vision.js                QR asset tags + Tesseract OCR
 js/xr.js                    WebXR AR/VR session (three.js): step panel, hit-test, controllers
 js/guide.js, js/card.js     shared step state + overlay card
 js/speech.js                voice input / read aloud (platform engines)
+brake.html, js/brake/       Brake Control Unit MR guide: model.js (procedural 3D unit + highlights),
+                            mr.js (session, anchors, grab), hands.js (joints, pinch, poke, wrist menu),
+                            ui3d.js + panels.js (3D panels), procedure.js (EN/GU steps + state)
 js/i18n.js                  English + Gujarati strings
 data/                       demo manual + QR tag definitions
 vendor/                     three.js, pdf.js, tesseract.js (+ eng/guj data), jsQR, Noto Sans Gujarati
@@ -115,7 +147,10 @@ The smoke test runs headless Chromium. It covers English and Gujarati search,
 the procedure stepper, the camera view, photo OCR (English and Gujarati), QR
 tags, PDF import (including Gujarati line repair), an offline reload, and a full
 **emulated Meta Quest 3 AR session** using Meta's IWER WebXR emulator:
-controller-ray hover, trigger on the panel buttons, pinning, and exit.
+controller-ray hover, trigger on the panel buttons, pinning, and exit. For the
+brake MR guide it also places and anchors the unit with a controller, switches to
+tracked hands, pokes panel buttons with the fingertip, and pinch-grabs and moves the
+anchored model.
 
 ## Limits
 

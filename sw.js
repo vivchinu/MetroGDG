@@ -1,7 +1,7 @@
 // Service worker: caches the whole app, the demo manual and every on-device
 // model (OCR, PDF reader, 3D engine, fonts) so it runs with no network,
 // e.g. in underground sections and equipment rooms.
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.1.0';
 const CACHE = `metro-fix-assist-${VERSION}`;
 
 const CORE = [
@@ -9,6 +9,16 @@ const CORE = [
   'index.html',
   'manifest.webmanifest',
   'tags.html',
+  'brake.html',
+  'css/brake.css',
+  'js/brake/main.js',
+  'js/brake/procedure.js',
+  'js/brake/model.js',
+  'js/brake/ui3d.js',
+  'js/brake/panels.js',
+  'js/brake/hands.js',
+  'js/brake/mr.js',
+  'vendor/three/addons/OrbitControls.js',
   'css/app.css',
   'js/main.js',
   'js/i18n.js',

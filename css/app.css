@@ -134,6 +134,13 @@ textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .chip.static { cursor: default; min-height: 32px; font-size: 0.85rem; background: var(--surface-2); }
 .chip.code { font-family: ui-monospace, monospace; }
 .chips-section { margin-bottom: 16px; }
+.mr-feature {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; text-decoration: none; color: inherit;
+  border-color: var(--accent); background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(225, 29, 72, 0.08)), var(--surface);
+}
+.mr-feature b { display: block; }
+.mr-feature .mr-icon { font-size: 1.8rem; }
+.mr-feature > span:last-child { font-size: 1.6rem; color: var(--accent); }
 
 .photo-panel { display: flex; gap: 12px; align-items: flex-start; position: relative; padding-right: 48px; }
 .photo-clear { position: absolute; top: 6px; right: 6px; min-height: 40px; width: 40px; }

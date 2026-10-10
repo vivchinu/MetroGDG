@@ -14,6 +14,7 @@ const files = [
   ['three/build/three.module.min.js', 'three/three.module.min.js'],
   ['three/build/three.core.min.js', 'three/three.core.min.js'],
   ['three/LICENSE', 'three/LICENSE'],
+  ['three/examples/jsm/controls/OrbitControls.js', 'three/addons/OrbitControls.js'],
   ['pdfjs-dist/build/pdf.min.mjs', 'pdfjs/pdf.min.mjs'],
   ['pdfjs-dist/build/pdf.worker.min.mjs', 'pdfjs/pdf.worker.min.mjs'],
   ['pdfjs-dist/LICENSE', 'pdfjs/LICENSE'],

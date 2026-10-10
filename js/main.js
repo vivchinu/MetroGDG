@@ -294,6 +294,7 @@ function renderProcedure() {
   $('.chips', tools).replaceChildren(...(c.tools || []).map((s) => el('span', { class: 'chip static', text: '🔧 ' + s })));
 
   $('#btn-page').hidden = p.source !== 'pdf';
+  $('#btn-mr3d').hidden = p.type !== 'brake';
   renderXrButton();
   renderGuide();
 }

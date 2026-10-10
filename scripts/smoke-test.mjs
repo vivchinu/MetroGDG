@@ -236,6 +236,155 @@ try {
     : true), 'Quest 3: Exit button ends the session and cleans up');
   check(qerrors.length === 0, `Quest 3: no page errors${qerrors.length ? ': ' + qerrors.join(' | ') : ''}`);
   await qctx.close();
+
+  // ---------- Brake Control Unit: 3D page ----------
+  const bctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
+  const bp = await bctx.newPage();
+  const berrors = [];
+  bp.on('pageerror', (e) => berrors.push(e.message));
+  bp.on('console', (m) => { if (m.type() === 'error') berrors.push(m.text()); });
+  await bp.addInitScript(() => localStorage.setItem('mfa.lang', 'en'));
+  await bp.goto(BASE + 'brake.html');
+  await bp.waitForTimeout(1500);
+  check((await bp.textContent('#rec-list')).includes('Check power supply'), 'Brake page: overview lists the recommended actions');
+  await bp.click('#btn-start');
+  await bp.click('#btn-next');
+  check((await bp.textContent('#step-title')).includes('24 V'), 'Brake page: step 2 is the 24 V supply check');
+  const focus = await bp.evaluate(async () => {
+    const { BrakeUnitModel } = await import('./js/brake/model.js');
+    return document.querySelector('#step-count').textContent;
+  });
+  check(focus.includes('2'), 'Brake page: stepper shows step 2');
+  await bp.screenshot({ path: join(out, '10-brake-page.png') });
+  await bp.click('.lang-toggle [data-lang=gu]');
+  check((await bp.textContent('#step-title')).includes('પાવર'), 'Brake page: Gujarati content');
+  await bp.click('.lang-toggle [data-lang=en]');
+  await bp.click('.tabs [data-tab=report]');
+  await bp.click('#obs-chips .chip');
+  await bp.fill('#notes', 'TB1 pin 1 loose');
+  await bp.click('#btn-save');
+  check((await bp.textContent('#report-list')).includes('TB1 pin 1 loose'), 'Brake page: report saved on the device');
+  check(berrors.length === 0, `Brake page: no page errors${berrors.length ? ': ' + berrors.join(' | ') : ''}`);
+  await bctx.close();
+
+  // ---------- Brake Control Unit: mixed reality on emulated Quest 3 ----------
+  const mctx = await browser.newContext({ viewport: { width: 1000, height: 800 } });
+  const m = await mctx.newPage();
+  const merrors = [];
+  m.on('pageerror', (e) => merrors.push(e.message));
+  m.on('console', (msg) => { if (msg.type() === 'error') merrors.push(msg.text()); });
+  await m.addInitScript({ path: join(root, 'node_modules/iwer/build/iwer.min.js') });
+  await m.addInitScript(() => {
+    const device = new self.IWER.XRDevice(self.IWER.metaQuest3);
+    device.installRuntime({ forceInstall: true });
+    self.__xrDevice = device;
+    localStorage.setItem('mfa.lang', 'en');
+    localStorage.removeItem('mfa.bcu.anchor');
+  });
+  await m.goto(BASE + 'brake.html');
+  await m.waitForSelector('#btn-mr:not([hidden])', { timeout: 10000 });
+  await m.click('#btn-mr');
+  const mr = (expr) => m.evaluate(`import('./js/brake/mr.js').then(({ mrDebug: m }) => (${expr}))`);
+  const waitMr = async (expr, timeout = 10000) => {
+    const end = Date.now() + timeout;
+    while (Date.now() < end) { if (await mr(expr).catch(() => false)) return true; await m.waitForTimeout(100); }
+    return false;
+  };
+  check(await waitMr("m.mode && m.mode() === 'place' && m.placePanel.mesh.visible"), 'MR: session starts in placement mode with the place prompt');
+
+  // Controller: point at the floor and pull the trigger to anchor the unit there.
+  await m.evaluate(async () => {
+    const THREE = await import('three');
+    const d = self.__xrDevice;
+    const from = new THREE.Vector3(0.2, 1.3, -0.2);
+    const to = new THREE.Vector3(0.3, 0, -1.3);
+    const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(from, to, new THREE.Vector3(0, 1, 0)));
+    d.controllers.right.position.set(from.x, from.y, from.z);
+    d.controllers.right.quaternion.set(q.x, q.y, q.z, q.w);
+  });
+  await m.waitForTimeout(300);
+  await m.evaluate(() => self.__xrDevice.controllers.right.updateButtonValue('trigger', 1));
+  await m.waitForTimeout(200);
+  await m.evaluate(() => self.__xrDevice.controllers.right.updateButtonValue('trigger', 0));
+  check(await waitMr("m.mode() === 'guide' && m.modelGroup.visible && m.anchored()"), 'MR: trigger on the floor places the 3D brake unit and creates a WebXR anchor');
+  const placed = await mr('m.modelGroup.position.clone()');
+  check(Math.abs(placed.x - 0.3) < 0.05 && Math.abs(placed.z + 1.3) < 0.05 && Math.abs(placed.y) < 0.02, `MR: unit stands where the ray met the floor (${placed.x.toFixed(2)}, ${placed.y.toFixed(2)}, ${placed.z.toFixed(2)})`);
+  check(await mr("m.model.parts.unit && !m.model.state.faultCleared && m.model.faultLabel.sprite.visible"), 'MR: faulty unit is flagged with the fault callout');
+
+  // Hands: poke panel buttons with the right index fingertip.
+  await m.evaluate(() => { self.__xrDevice.primaryInputMode = 'hand'; });
+  check(await waitMr("m.hands.hands.every((h) => h.tracked)"), 'MR: both hands tracked');
+  const tipTo = async (target) => {
+    for (let i = 0; i < 4; i++) {
+      await m.evaluate(async (t) => {
+        const { mrDebug: md } = await import('./js/brake/mr.js');
+        const hs = md.hands.hands.find((h) => h.handedness === 'right');
+        const hand = self.__xrDevice.hands.right;
+        const p = hand.position;
+        hand.position.set(p.x + t.x - hs.tip.x, p.y + t.y - hs.tip.y, p.z + t.z - hs.tip.z);
+      }, target);
+      await m.waitForTimeout(120);
+    }
+  };
+  const btnPos = (id, depth) => m.evaluate(async ({ id, depth }) => {
+    const THREE = await import('three');
+    const { mrDebug: md } = await import('./js/brake/mr.js');
+    const panel = md.mainPanel;
+    const b = panel.buttons.find((x) => x.id === id);
+    const local = new THREE.Vector3(((b.x + b.w / 2) / panel.pw - 0.5) * panel.width, (0.5 - (b.y + b.h / 2) / panel.ph) * panel.height, depth);
+    return panel.mesh.localToWorld(local);
+  }, { id, depth });
+  const poke = async (id) => {
+    const far = await btnPos(id, 0.12);
+    await tipTo(far);
+    await tipTo(await btnPos(id, 0.07));
+    await tipTo(await btnPos(id, 0.03));
+    const hover = await mr('m.mainPanel.hover');
+    await tipTo(await btnPos(id, -0.006));
+    await m.waitForTimeout(250);
+    await tipTo(far); // the panel content may have changed after the press
+    return hover;
+  };
+  const startHover = await poke('start');
+  check(startHover === 'start', `MR hands: fingertip near "Start guidance" hovers it (${startHover})`);
+  check(await waitMr("m.session.tab === 'steps' && m.session.index === 0"), 'MR hands: poking "Start guidance" opens step 1');
+  check(await mr("m.model.state.focus.includes('display')"), 'MR: step 1 highlights the fault display on the 3D unit');
+  await poke('next');
+  check(await waitMr("m.session.index === 1 && m.model.state.focus.includes('tb1')"), 'MR hands: poking Next goes to step 2 and highlights terminal block TB1');
+  check(await m.evaluate(() => document.querySelector('#step-title').textContent.includes('24 V')), 'MR: 2D page stays in sync with the panel');
+  const writePanel = async (name, file) => {
+    const png = await mr(`m.${name}.canvas.toDataURL('image/png')`);
+    const { writeFileSync } = await import('node:fs');
+    writeFileSync(join(out, file), Buffer.from(png.split(',')[1], 'base64'));
+  };
+  await writePanel('mainPanel', '11-mr-panel-step.png');
+
+  // Hands: pinch inside the model, move, release -> model follows and is re-anchored.
+  const centre = await mr('m.model.worldBounds().getCenter(new m.modelGroup.position.constructor())');
+  await tipTo({ x: centre.x, y: centre.y, z: centre.z + 0.05 });
+  await m.evaluate(() => self.__xrDevice.hands.right.updatePinchValue(1));
+  check(await waitMr('m.grabbing()'), 'MR hands: pinching inside the 3D unit grabs it');
+  await m.evaluate(() => { const h = self.__xrDevice.hands.right; h.position.set(h.position.x - 0.3, h.position.y, h.position.z + 0.2); });
+  await m.waitForTimeout(400);
+  await m.evaluate(() => self.__xrDevice.hands.right.updatePinchValue(0));
+  check(await waitMr('!m.grabbing() && m.anchored()'), 'MR hands: releasing the pinch drops the unit and re-anchors it');
+  const moved = await mr('m.modelGroup.position.clone()');
+  check(moved.x < placed.x - 0.2 && moved.z > placed.z + 0.1, `MR hands: unit moved with the hand (${moved.x.toFixed(2)}, ${moved.z.toFixed(2)})`);
+
+  // Cover tool via ray-pinch from the toolbar is covered by poke; use the API for the remaining tools.
+  await poke('tool:cover');
+  check(await waitMr('m.session.coverOpen'), 'MR hands: Cover button opens the BCU cover');
+  await poke('tab:overview');
+  await writePanel('mainPanel', '12-mr-panel-overview.png');
+  await mr("m.session.setTab('report')");
+  await m.waitForTimeout(100);
+  await writePanel('mainPanel', '13-mr-panel-report.png');
+  await writePanel('placePanel', '14-mr-place.png');
+  await writePanel('wristPanel', '15-mr-wrist.png');
+  await mr('m.xr.end()');
+  check(await m.evaluate(() => new Promise((r) => setTimeout(() => r(!document.querySelector('#xr-overlay').hidden === false), 300))), 'MR: session ends cleanly');
+  check(merrors.length === 0, `MR: no page errors${merrors.length ? ': ' + merrors.join(' | ') : ''}`);
+  await mctx.close();
 } catch (err) {
   console.error(err);
   failures++;
