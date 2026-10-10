@@ -1,0 +1,25 @@
+{
+  "name": "metro-fix-assist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline WebXR/AR troubleshooting assistant for metro maintenance staff (Meta Quest 3 + phones, English/Gujarati)",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "cert": "mkdir -p cert && openssl req -x509 -newkey rsa:2048 -nodes -keyout cert/key.pem -out cert/cert.pem -days 365 -subj /CN=metro-fix-assist",
+    "test": "node scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/noto-sans-gujarati": "5.2.7",
+    "@tesseract.js-data/eng": "1.0.0",
+    "@tesseract.js-data/guj": "1.0.0",
+    "iwer": "^2.5.0",
+    "jsqr": "1.4.0",
+    "pdfjs-dist": "4.10.38",
+    "qrcode": "1.5.4",
+    "tesseract.js": "7.0.0",
+    "tesseract.js-core": "7.0.0",
+    "three": "0.180.0"
+  }
+}

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Metro Fix Assist</title>
+  <meta name="description" content="Offline troubleshooting assistant for metro maintenance staff, with AR on Meta Quest 3 and phones. English and Gujarati.">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" width="36" height="36">
+      <div>
+        <h1 data-i18n="appName">Metro Fix Assist</h1>
+        <p class="tagline" data-i18n="tagline"></p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="offline-badge" class="badge" hidden></span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="gu">ગુ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Ask -->
+    <section id="view-assist" class="view">
+      <form id="ask-form" class="card ask" autocomplete="off">
+        <label for="query" class="label" data-i18n="describeLabel"></label>
+        <textarea id="query" rows="3" data-i18n-placeholder="describePlaceholder"></textarea>
+        <div class="ask-actions">
+          <button type="button" id="btn-speak" class="btn secondary"><span aria-hidden="true">🎤</span> <span data-i18n="speak"></span></button>
+          <label class="btn secondary file-btn">
+            <span aria-hidden="true">📷</span> <span data-i18n="photo"></span>
+            <input id="photo-input" type="file" accept="image/*" capture="environment" hidden>
+          </label>
+          <button type="button" id="btn-live" class="btn secondary"><span aria-hidden="true">🎥</span> <span data-i18n="liveCamera"></span></button>
+          <button type="submit" class="btn primary"><span aria-hidden="true">🔍</span> <span data-i18n="find"></span></button>
+        </div>
+      </form>
+
+      <div id="photo-panel" class="card photo-panel" hidden>
+        <button type="button" id="btn-photo-clear" class="btn ghost photo-clear" data-i18n-aria="close">✕</button>
+        <img id="photo-thumb" alt="">
+        <div class="photo-info">
+          <p id="photo-status" class="muted"></p>
+          <dl id="photo-results"></dl>
+        </div>
+      </div>
+
+      <section class="chips-section">
+        <h2 class="section-title" data-i18n="quickPicks"></h2>
+        <div id="chips" class="chips"></div>
+      </section>
+
+      <section id="results-section" hidden>
+        <h2 class="section-title" data-i18n="results"></h2>
+        <div id="results" class="results"></div>
+      </section>
+    </section>
+
+    <!-- Procedure -->
+    <section id="view-procedure" class="view" hidden>
+      <button type="button" id="btn-back" class="btn ghost back"><span aria-hidden="true">←</span> <span data-i18n="back"></span></button>
+      <article class="card procedure">
+        <p id="proc-equipment" class="eyebrow"></p>
+        <h2 id="proc-title"></h2>
+        <p id="proc-source" class="muted small"></p>
+        <div class="proc-actions">
+          <button type="button" id="btn-xr" class="btn primary big" hidden></button>
+          <button type="button" id="btn-camview" class="btn secondary"><span aria-hidden="true">🎥</span> <span data-i18n="cameraOverlay"></span></button>
+          <button type="button" id="btn-read" class="btn secondary"><span aria-hidden="true">🔊</span> <span data-i18n="readAloud"></span></button>
+          <button type="button" id="btn-page" class="btn secondary" hidden><span aria-hidden="true">📄</span> <span data-i18n="showPage"></span></button>
+        </div>
+        <div id="proc-safety" class="safety" hidden>
+          <h3>⚠ <span data-i18n="safety"></span></h3>
+          <ul></ul>
+        </div>
+        <div id="proc-tools" class="tools" hidden>
+          <h3 data-i18n="tools"></h3>
+          <div class="chips"></div>
+        </div>
+        <h3 data-i18n="steps"></h3>
+        <ol id="proc-steps" class="steps"></ol>
+        <div id="page-view" class="page-view" hidden><canvas></canvas></div>
+      </article>
+      <div class="stepper">
+        <button type="button" data-act="back" class="btn secondary" aria-label="Back">◀</button>
+        <span id="stepper-label"></span>
+        <button type="button" data-act="next" class="btn primary" aria-label="Next">▶</button>
+      </div>
+    </section>
+
+    <!-- Manuals -->
+    <section id="view-manuals" class="view" hidden>
+      <div class="card">
+        <h2 data-i18n="manualsTitle"></h2>
+        <label class="btn primary file-btn">
+          <span aria-hidden="true">＋</span> <span data-i18n="importPdf"></span>
+          <input id="pdf-input" type="file" accept="application/pdf,.pdf" hidden>
+        </label>
+        <div id="import-progress" class="progress" hidden><div class="bar"></div><span></span></div>
+        <ul id="manual-list" class="manual-list"></ul>
+        <p id="storage-info" class="muted small"></p>
+      </div>
+    </section>
+
+    <!-- Help -->
+    <section id="view-help" class="view" hidden>
+      <div class="card help" data-i18n-html="helpHtml"></div>
+      <div class="card help">
+        <p class="small muted" id="env-info"></p>
+        <p class="small"><a href="tags.html" target="_blank" rel="noopener">QR asset tags for testing (print)</a></p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button type="button" data-view="assist" class="active"><span aria-hidden="true">🛠</span><span data-i18n="tabAssist"></span></button>
+    <button type="button" data-view="manuals"><span aria-hidden="true">📚</span><span data-i18n="tabManuals"></span></button>
+    <button type="button" data-view="help"><span aria-hidden="true">❔</span><span data-i18n="tabHelp"></span></button>
+  </nav>
+
+  <!-- Phone AR DOM overlay -->
+  <div id="xr-overlay" class="xr-overlay" hidden>
+    <div class="xr-top">
+      <button type="button" data-act="exit" class="btn dark">✕ <span data-i18n="xrExit"></span></button>
+      <p class="xr-hint"></p>
+    </div>
+    <div class="step-card">
+      <p class="step-label"></p>
+      <div class="step-text"></div>
+      <div class="step-actions">
+        <button type="button" data-act="back" class="btn dark">◀</button>
+        <button type="button" data-act="speak" class="btn dark">🔊</button>
+        <button type="button" data-act="recenter" class="btn dark" data-i18n-aria="xrRecenter">⌖</button>
+        <button type="button" data-act="next" class="btn primary">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera view (iPhone / no WebXR) and live capture -->
+  <div id="camview" class="camview" hidden>
+    <video playsinline muted autoplay></video>
+    <div class="cam-top">
+      <button type="button" data-act="close" class="btn dark">✕ <span data-i18n="close"></span></button>
+    </div>
+    <div class="step-card" data-mode="guide">
+      <p class="step-title"></p>
+      <p class="step-label"></p>
+      <div class="step-text"></div>
+      <div class="step-actions">
+        <button type="button" data-act="back" class="btn dark">◀</button>
+        <button type="button" data-act="speak" class="btn dark">🔊</button>
+        <button type="button" data-act="next" class="btn primary">▶</button>
+      </div>
+    </div>
+    <div class="cam-capture" data-mode="capture">
+      <button type="button" data-act="capture" class="shutter" data-i18n-aria="capture"></button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

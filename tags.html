@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asset QR Tags</title>
+  <style>
+    :root { --bg: #fff; --text: #0f172a; --muted: #5b6577; --border: #cbd5e1; }
+    body { margin: 0; padding: 16px; background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; }
+    h1 { font-size: 1.3rem; margin: 0 0 4px; }
+    p { color: var(--muted); margin: 0 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .tag { border: 2px dashed var(--border); border-radius: 12px; padding: 12px; text-align: center; break-inside: avoid; }
+    .tag img { width: 100%; max-width: 180px; aspect-ratio: 1; }
+    .tag b { display: block; font-family: ui-monospace, monospace; }
+    .tag span { font-size: 0.85rem; color: var(--muted); }
+    @media print { p, button { display: none; } body { padding: 0; } }
+  </style>
+</head>
+<body>
+  <h1>Metro Fix Assist: equipment QR tags</h1>
+  <p>Print these and stick them on equipment for a live test. Tap <b>Photo</b> or <b>Live camera</b> in the app and point it at a tag: the app identifies the equipment and shows its procedure, all on the device. <button onclick="print()">Print</button></p>
+  <div class="grid" id="grid"></div>
+  <script>
+    fetch('data/asset-tags.json').then((r) => r.json()).then((tags) => {
+      document.getElementById('grid').innerHTML = tags.map((t) => `
+        <div class="tag"><img src="samples/qr/${t.asset}.svg" alt="QR for ${t.asset}"><b>${t.asset}</b><span>${t.label}</span></div>`).join('');
+    });
+  </script>
+</body>
+</html>

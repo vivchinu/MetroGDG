@@ -1,0 +1,11 @@
+[
+  { "asset": "DOOR-C3-D2", "type": "door", "label": "Car 3 · Door 2", "payload": "METRO-ASSET|DOOR-C3-D2|door|Car 3 Door 2" },
+  { "asset": "PSD-UP-04", "type": "psd", "label": "Up platform · PSD 4", "payload": "METRO-ASSET|PSD-UP-04|psd|Up platform PSD 4" },
+  { "asset": "ESC-07", "type": "escalator", "label": "Escalator 7 (concourse)", "payload": "METRO-ASSET|ESC-07|escalator|Escalator 7 concourse" },
+  { "asset": "LIFT-02", "type": "lift", "label": "Lift 2 (street to concourse)", "payload": "METRO-ASSET|LIFT-02|lift|Lift 2 street to concourse" },
+  { "asset": "HVAC-C2", "type": "hvac", "label": "Car 2 · Roof HVAC unit", "payload": "METRO-ASSET|HVAC-C2|hvac|Car 2 roof HVAC unit" },
+  { "asset": "PMP-SUMP-1", "type": "pump", "label": "Sump pump room 1", "payload": "METRO-ASSET|PMP-SUMP-1|pump|Sump pump room 1" },
+  { "asset": "FAP-STN", "type": "fire", "label": "Station fire alarm panel", "payload": "METRO-ASSET|FAP-STN|fire|Station fire alarm panel" },
+  { "asset": "AFC-G05", "type": "afc", "label": "Ticket gate 5", "payload": "METRO-ASSET|AFC-G05|afc|Ticket gate 5" },
+  { "asset": "TVF-01", "type": "tvf", "label": "Tunnel vent fan 1", "payload": "METRO-ASSET|TVF-01|tvf|Tunnel vent fan 1" }
+]

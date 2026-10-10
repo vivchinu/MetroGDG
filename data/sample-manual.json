@@ -1,0 +1,388 @@
+{
+  "id": "builtin-metro-om",
+  "name": ["Metro O&M Troubleshooting Guide (demo)", "મેટ્રો O&M ખામી નિવારણ માર્ગદર્શિકા (ડેમો)"],
+  "note": [
+    "Demonstration content for testing the assistant. Not an official procedure: import your organisation's own manuals (PDF) and follow them.",
+    "આસિસ્ટન્ટના પરીક્ષણ માટેની ડેમો સામગ્રી. આ સત્તાવાર પ્રક્રિયા નથી: તમારી સંસ્થાની પોતાની મેન્યુઅલ (PDF) ઇમ્પોર્ટ કરો અને તેનું પાલન કરો."
+  ],
+  "procedures": [
+    {
+      "id": "door-not-closing",
+      "type": "door",
+      "page": 12,
+      "codes": ["DCU-E12", "DCU-E15"],
+      "equipment": ["Train saloon door", "ટ્રેનનો સલૂન દરવાજો"],
+      "title": ["Saloon door does not close or reopens repeatedly", "સલૂનનો દરવાજો બંધ થતો નથી અથવા વારંવાર ફરી ખૂલે છે"],
+      "symptoms": [
+        "Door stays open, door reopens after closing, door obstruction alarm, door stuck, train cannot depart, door indicator lamp blinking.",
+        "દરવાજો ખુલ્લો રહે છે, બંધ થયા પછી ફરી ખૂલે છે, દરવાજા અવરોધ એલાર્મ, દરવાજો અટકી ગયો, ટ્રેન ઉપડી શકતી નથી, દરવાજાનો સૂચક લેમ્પ ઝબકે છે."
+      ],
+      "safety": [
+        ["Inform the train operator and the Operations Control Centre (OCC) before working on any door.", "કોઈપણ દરવાજા પર કામ કરતાં પહેલાં ટ્રેન ઓપરેટર અને ઓપરેશન્સ કંટ્રોલ સેન્ટર (OCC)ને જાણ કરો."],
+        ["Never put hands between the door leaves while the door is powered.", "દરવાજાને પાવર ચાલુ હોય ત્યારે દરવાજાના પાંખિયાં વચ્ચે ક્યારેય હાથ ન નાખો."]
+      ],
+      "tools": [
+        ["Door isolation key (square key)", "દરવાજા આઇસોલેશન ચાવી (ચોરસ ચાવી)"],
+        ["Torch", "ટોર્ચ"],
+        ["Portable test unit (PTU) / laptop", "પોર્ટેબલ ટેસ્ટ યુનિટ (PTU) / લેપટોપ"]
+      ],
+      "steps": [
+        ["Check the door threshold and the leaf edges for obstructions (bags, umbrellas, debris) and remove them.", "દરવાજાના ઉંબરા અને પાંખિયાંની કિનારીઓમાં અવરોધ (બેગ, છત્રી, કચરો) તપાસો અને દૂર કરો."],
+        ["Read the fault code on the Door Control Unit (DCU) display above the door. E12 = obstruction detected, E15 = close limit switch not made.", "દરવાજા ઉપરના ડોર કંટ્રોલ યુનિટ (DCU) ડિસ્પ્લે પર ફોલ્ટ કોડ વાંચો. E12 = અવરોધ મળ્યો, E15 = બંધ થવાની લિમિટ સ્વિચ જોડાઈ નથી."],
+        ["Clean the bottom guide rail of the door with a brush and check that the guide roller moves freely.", "દરવાજાની નીચેની ગાઇડ રેલ બ્રશથી સાફ કરો અને ગાઇડ રોલર સરળતાથી ફરે છે તે તપાસો."],
+        ["Press the DCU reset button and ask the operator to open and close the doors once.", "DCU રીસેટ બટન દબાવો અને ઓપરેટરને દરવાજા એક વખત ખોલ-બંધ કરવા કહો."],
+        ["If the door still fails, check the rubber edge sensor for cuts and the close limit switch for loose wiring.", "જો દરવાજો હજુ નિષ્ફળ જાય, તો રબર એજ સેન્સરમાં કાપ અને બંધ લિમિટ સ્વિચના ઢીલા વાયર તપાસો."],
+        ["If not fixed within 5 minutes: close the door by hand, lock it with the door isolation key, confirm 'door isolated' on the cab display and report to OCC for depot repair.", "જો 5 મિનિટમાં ઠીક ન થાય: દરવાજો હાથથી બંધ કરો, આઇસોલેશન ચાવીથી લૉક કરો, કેબ ડિસ્પ્લે પર 'door isolated'ની ખાતરી કરો અને ડેપો રિપેર માટે OCCને જાણ કરો."]
+      ]
+    },
+    {
+      "id": "psd-not-operating",
+      "type": "psd",
+      "page": 18,
+      "codes": ["PSD-F03", "PSD-F07"],
+      "equipment": ["Platform screen door (PSD)", "પ્લેટફોર્મ સ્ક્રીન ડોર (PSD)"],
+      "title": ["Platform screen door (PSD) does not open or close", "પ્લેટફોર્મ સ્ક્રીન ડોર (PSD) ખૂલતો કે બંધ થતો નથી"],
+      "symptoms": [
+        "PSD panel stuck, PSD fault lamp red, train doors open but platform door stays closed, PSC panel alarm, platform door not locking.",
+        "PSD પેનલ અટકી ગઈ, PSD ફોલ્ટ લેમ્પ લાલ, ટ્રેનના દરવાજા ખુલ્લા પણ પ્લેટફોર્મ દરવાજો બંધ રહે છે, PSC પેનલ એલાર્મ, પ્લેટફોર્મ દરવાજો લૉક થતો નથી."
+      ],
+      "safety": [
+        ["Stand behind the yellow line and coordinate with the Station Controller before using local control.", "પીળી લાઇનની પાછળ ઊભા રહો અને લોકલ કંટ્રોલ વાપરતા પહેલાં સ્ટેશન કંટ્રોલર સાથે સંકલન કરો."],
+        ["Never enter the track-side gap while a train is approaching.", "ટ્રેન આવતી હોય ત્યારે ક્યારેય ટ્રેક બાજુની જગ્યામાં પ્રવેશ ન કરો."]
+      ],
+      "tools": [
+        ["PSD local control key", "PSD લોકલ કંટ્રોલ ચાવી"],
+        ["Multimeter", "મલ્ટિમીટર"],
+        ["Torch", "ટોર્ચ"]
+      ],
+      "steps": [
+        ["Note the door number and the fault code on the Platform Screen Controller (PSC) panel. F03 = motor overcurrent, F07 = lock not engaged.", "પ્લેટફોર્મ સ્ક્રીન કંટ્રોલર (PSC) પેનલ પર દરવાજાનો નંબર અને ફોલ્ટ કોડ નોંધો. F03 = મોટર ઓવરકરન્ટ, F07 = લૉક જોડાયું નથી."],
+        ["Inspect the sliding panel track and the bottom guide for objects or debris.", "સ્લાઇડિંગ પેનલના ટ્રેક અને નીચેની ગાઇડમાં વસ્તુ કે કચરો છે કે નહીં તે તપાસો."],
+        ["Switch the affected door to LOCAL mode with the key and operate OPEN / CLOSE to test it.", "અસરગ્રસ્ત દરવાજાને ચાવીથી LOCAL મોડમાં ફેરવો અને OPEN / CLOSE ચલાવી ચકાસો."],
+        ["If the door moves in LOCAL mode, reset the door control unit and return the switch to AUTO.", "જો LOCAL મોડમાં દરવાજો ચાલે, તો ડોર કંટ્રોલ યુનિટ રીસેટ કરો અને સ્વિચ AUTO પર પાછી ફેરવો."],
+        ["If it does not move, check the 110 V DC supply at the door control unit terminals with a multimeter.", "જો દરવાજો ન ચાલે, તો મલ્ટિમીટરથી ડોર કંટ્રોલ યુનિટના ટર્મિનલ પર 110 V DC સપ્લાય તપાસો."],
+        ["If still faulty, close and lock the door by hand, set it to ISOLATED, place a 'Do not use' sign and inform the Station Controller.", "હજુ ખામી હોય તો દરવાજો હાથથી બંધ કરી લૉક કરો, ISOLATED પર મૂકો, 'ઉપયોગ ન કરો' બોર્ડ લગાવો અને સ્ટેશન કંટ્રોલરને જાણ કરો."]
+      ]
+    },
+    {
+      "id": "escalator-stopped",
+      "type": "escalator",
+      "page": 24,
+      "codes": ["ESC-E21", "ESC-E24", "ESC-E27"],
+      "equipment": ["Escalator", "એસ્કેલેટર"],
+      "title": ["Escalator stopped suddenly", "એસ્કેલેટર અચાનક બંધ થઈ ગયું"],
+      "symptoms": [
+        "Escalator stops, emergency stop pressed, step sag, handrail speed fault, comb plate switch tripped, unusual noise or grinding.",
+        "એસ્કેલેટર અટકે છે, ઇમરજન્સી સ્ટોપ દબાયું, પગથિયું નીચે નમ્યું, હેન્ડરેલ સ્પીડ ખામી, કોમ્બ પ્લેટ સ્વિચ ટ્રિપ, અસામાન્ય અવાજ."
+      ],
+      "safety": [
+        ["Barricade both landings before opening any floor plate.", "કોઈપણ ફ્લોર પ્લેટ ખોલતાં પહેલાં બંને છેડા પર બેરિકેડ લગાવો."],
+        ["Apply lock-out / tag-out (LOTO) on the main switch before entering the pit.", "પિટમાં ઉતરતાં પહેલાં મુખ્ય સ્વિચ પર લૉક-આઉટ / ટેગ-આઉટ (LOTO) લગાવો."]
+      ],
+      "tools": [
+        ["Escalator key", "એસ્કેલેટર ચાવી"],
+        ["LOTO kit", "LOTO કિટ"],
+        ["Torch", "ટોર્ચ"],
+        ["Feeler gauge", "ફીલર ગેજ"]
+      ],
+      "steps": [
+        ["Clear passengers and barricade the top and bottom landings.", "મુસાફરોને દૂર કરો અને ઉપર તથા નીચેના છેડે બેરિકેડ લગાવો."],
+        ["Read the fault code on the controller display at the top landing. E21 = comb plate switch, E24 = step sag, E27 = handrail speed.", "ઉપરના છેડે કંટ્રોલર ડિસ્પ્લે પર ફોલ્ટ કોડ વાંચો. E21 = કોમ્બ પ્લેટ સ્વિચ, E24 = પગથિયું નમવું, E27 = હેન્ડરેલ સ્પીડ."],
+        ["Check that every emergency stop button is released and that no object is trapped in the comb plates.", "બધા ઇમરજન્સી સ્ટોપ બટન છૂટા છે અને કોમ્બ પ્લેટમાં કોઈ વસ્તુ ફસાઈ નથી તે તપાસો."],
+        ["For E24: run in inspection mode at slow speed and look for a broken or sagging step. Do not return to service if one is found.", "E24 માટે: ઇન્સ્પેક્શન મોડમાં ધીમી ગતિએ ચલાવો અને તૂટેલું કે નમેલું પગથિયું શોધો. મળે તો સેવામાં પાછું ન મૂકો."],
+        ["For E27: check the handrail tension and the handrail speed sensor gap (2–4 mm).", "E27 માટે: હેન્ડરેલનું ટેન્શન અને હેન્ડરેલ સ્પીડ સેન્સરનો ગેપ (2–4 મિમી) તપાસો."],
+        ["Reset the controller with the escalator key, run one empty cycle in each direction, then remove the barricades.", "એસ્કેલેટર ચાવીથી કંટ્રોલર રીસેટ કરો, દરેક દિશામાં એક ખાલી ચક્ર ચલાવો, પછી બેરિકેડ દૂર કરો."]
+      ]
+    },
+    {
+      "id": "lift-stuck",
+      "type": "lift",
+      "page": 31,
+      "codes": ["LFT-E05", "LFT-E09"],
+      "equipment": ["Lift / elevator", "લિફ્ટ / એલિવેટર"],
+      "title": ["Lift stopped between floors (passenger rescue)", "લિફ્ટ બે માળ વચ્ચે અટકી ગઈ (મુસાફર બચાવ)"],
+      "symptoms": [
+        "Lift stuck, elevator stuck, passengers trapped, alarm bell from the car, lift not levelling, door not opening at floor.",
+        "લિફ્ટ અટકી ગઈ, મુસાફરો ફસાયા, કારમાંથી એલાર્મ બેલ, લિફ્ટ લેવલ થતી નથી, માળ પર દરવાજો ખૂલતો નથી."
+      ],
+      "safety": [
+        ["Only trained and authorised staff may perform a manual rescue.", "ફક્ત તાલીમ પામેલા અને અધિકૃત કર્મચારી જ મેન્યુઅલ બચાવ કરી શકે છે."],
+        ["Switch OFF and lock the main power before manual winding.", "મેન્યુઅલ વાઇન્ડિંગ પહેલાં મુખ્ય પાવર બંધ કરી લૉક કરો."]
+      ],
+      "tools": [
+        ["Landing door release key", "માળના દરવાજાની રિલીઝ ચાવી"],
+        ["Brake release lever", "બ્રેક રિલીઝ લિવર"],
+        ["LOTO kit", "LOTO કિટ"],
+        ["Two-way radio", "ટુ-વે રેડિયો"]
+      ],
+      "steps": [
+        ["Talk to the passengers on the intercom, reassure them and tell them not to force the doors.", "ઇન્ટરકોમ પર મુસાફરો સાથે વાત કરો, તેમને આશ્વાસન આપો અને દરવાજા જબરજસ્તી ન ખોલવા કહો."],
+        ["Find the car position on the controller display in the machine room and read the fault code (E05 = safety circuit open, E09 = door lock fault).", "મશીન રૂમના કંટ્રોલર ડિસ્પ્લે પરથી કારની સ્થિતિ શોધો અને ફોલ્ટ કોડ વાંચો (E05 = સેફ્ટી સર્કિટ ખુલ્લી, E09 = દરવાજા લૉક ખામી)."],
+        ["Try one controller reset. If the lift moves to the nearest floor and opens, stop here and report.", "એક વખત કંટ્રોલર રીસેટ કરો. જો લિફ્ટ નજીકના માળે જઈ દરવાજો ખોલે, તો અહીં અટકો અને જાણ કરો."],
+        ["Otherwise switch OFF and lock the main power (LOTO).", "નહીં તો મુખ્ય પાવર બંધ કરી લૉક કરો (LOTO)."],
+        ["With two people, release the brake in short steps and move the car to the nearest floor level marked on the rope.", "બે વ્યક્તિઓ સાથે, બ્રેક થોડું-થોડું છોડો અને દોરડા પર ચિહ્નિત નજીકના માળના લેવલ સુધી કાર લાવો."],
+        ["Open the landing door with the release key, help the passengers out, close the door and keep the lift out of service.", "રિલીઝ ચાવીથી માળનો દરવાજો ખોલો, મુસાફરોને બહાર કાઢો, દરવાજો બંધ કરો અને લિફ્ટ સેવામાંથી બહાર રાખો."]
+      ]
+    },
+    {
+      "id": "hvac-not-cooling",
+      "type": "hvac",
+      "page": 38,
+      "codes": ["HVC-E31", "HVC-E34"],
+      "equipment": ["Saloon HVAC (air-conditioning)", "સલૂન HVAC (એર-કન્ડિશનિંગ)"],
+      "title": ["Saloon air-conditioning not cooling", "સલૂનનું એર-કન્ડિશનિંગ ઠંડક આપતું નથી"],
+      "symptoms": [
+        "Coach is hot, AC blowing warm air, air conditioner not cooling, HVAC fault on cab display, compressor not running, water dripping from the ceiling.",
+        "કોચ ગરમ છે, AC ગરમ હવા ફેંકે છે, ઠંડક નથી, કેબ ડિસ્પ્લે પર HVAC ખામી, કોમ્પ્રેસર ચાલતું નથી, છતમાંથી પાણી ટપકે છે."
+      ],
+      "safety": [
+        ["Isolate the HVAC unit from the cab display before opening the roof unit cover.", "રૂફ યુનિટનું કવર ખોલતાં પહેલાં કેબ ડિસ્પ્લેથી HVAC યુનિટ આઇસોલેટ કરો."],
+        ["Never open refrigerant lines; that needs a certified technician.", "રેફ્રિજરન્ટ લાઇન ક્યારેય ન ખોલો; તે માટે પ્રમાણિત ટેકનિશિયન જરૂરી છે."]
+      ],
+      "tools": [
+        ["PTU / laptop", "PTU / લેપટોપ"],
+        ["Thermometer", "થર્મોમીટર"],
+        ["Screwdriver set", "સ્ક્રૂડ્રાઇવર સેટ"]
+      ],
+      "steps": [
+        ["Check the HVAC screen on the cab display: the mode should be AUTO and the set temperature 24–26 °C.", "કેબ ડિસ્પ્લે પર HVAC સ્ક્રીન તપાસો: મોડ AUTO અને સેટ તાપમાન 24–26 °C હોવું જોઈએ."],
+        ["Measure the supply air temperature at a ceiling vent; it should be at least 8 °C below the saloon temperature.", "છતના વેન્ટ પર સપ્લાય હવાનું તાપમાન માપો; તે સલૂનના તાપમાન કરતાં ઓછામાં ઓછું 8 °C ઓછું હોવું જોઈએ."],
+        ["Read the fault code. E31 = high pressure (dirty condenser or condenser fan stopped), E34 = low pressure (blocked filter or gas leak).", "ફોલ્ટ કોડ વાંચો. E31 = હાઇ પ્રેશર (ગંદું કન્ડેન્સર અથવા કન્ડેન્સર પંખો બંધ), E34 = લો પ્રેશર (ફિલ્ટર જામ અથવા ગેસ લીક)."],
+        ["Check the return-air filter and replace it if it is visibly blocked.", "રિટર્ન-એર ફિલ્ટર તપાસો અને સ્પષ્ટ રીતે જામ હોય તો બદલો."],
+        ["Reset the HVAC unit once from the cab display and wait 5 minutes for the compressor to restart.", "કેબ ડિસ્પ્લે પરથી HVAC યુનિટ એક વખત રીસેટ કરો અને કોમ્પ્રેસર ફરી ચાલુ થવા 5 મિનિટ રાહ જુઓ."],
+        ["If it still does not cool, switch the unit to VENTILATION ONLY, inform OCC and book the train for depot maintenance.", "હજુ ઠંડક ન આપે તો યુનિટને ફક્ત VENTILATION પર ફેરવો, OCCને જાણ કરો અને ટ્રેનને ડેપો મેન્ટેનન્સ માટે નોંધાવો."]
+      ]
+    },
+    {
+      "id": "traction-loss",
+      "type": "traction",
+      "page": 45,
+      "codes": ["TCU-E40", "TCU-E42"],
+      "equipment": ["Traction / pantograph", "ટ્રેક્શન / પેન્ટોગ્રાફ"],
+      "title": ["Train loses traction power / no line voltage", "ટ્રેનનો ટ્રેક્શન પાવર જતો રહે છે / લાઇન વોલ્ટેજ નથી"],
+      "symptoms": [
+        "No traction, train not moving, line voltage zero on cab display, pantograph down, train stopped in tunnel, VCB tripped, power loss.",
+        "ટ્રેક્શન નથી, ટ્રેન ચાલતી નથી, કેબ ડિસ્પ્લે પર લાઇન વોલ્ટેજ શૂન્ય, પેન્ટોગ્રાફ નીચે, ટ્રેન ટનલમાં અટકી, VCB ટ્રિપ, પાવર ગયો."
+      ],
+      "safety": [
+        ["Treat the overhead line as LIVE until OCC confirms it is isolated and earthed.", "OCC આઇસોલેટ અને અર્થ થયાની ખાતરી ન આપે ત્યાં સુધી ઓવરહેડ લાઇનને જીવંત (LIVE) માનો."],
+        ["Do not detrain passengers in the tunnel without OCC permission.", "OCCની પરવાનગી વગર ટનલમાં મુસાફરોને ઉતારશો નહીં."]
+      ],
+      "tools": [
+        ["Radio", "રેડિયો"],
+        ["PTU / laptop", "PTU / લેપટોપ"],
+        ["Insulated gloves", "ઇન્સ્યુલેટેડ મોજાં"]
+      ],
+      "steps": [
+        ["Contact OCC by radio: report the train number, location (chainage) and the cab display message.", "રેડિયો દ્વારા OCCનો સંપર્ક કરો: ટ્રેન નંબર, સ્થાન (ચેઇનેજ) અને કેબ ડિસ્પ્લે સંદેશ જણાવો."],
+        ["Ask OCC whether the section has power. If the whole section is dead, wait for OCC instructions.", "OCCને પૂછો કે સેક્શનમાં પાવર છે કે નહીં. આખું સેક્શન બંધ હોય તો OCCની સૂચનાની રાહ જુઓ."],
+        ["If the section has power, check the pantograph status on the cab display and raise the pantograph again.", "જો સેક્શનમાં પાવર હોય, તો કેબ ડિસ્પ્લે પર પેન્ટોગ્રાફની સ્થિતિ તપાસો અને પેન્ટોગ્રાફ ફરી ઊંચો કરો."],
+        ["Reset the main circuit breaker (VCB) once. E40 = VCB trip, E42 = traction inverter fault.", "મુખ્ય સર્કિટ બ્રેકર (VCB) એક વખત રીસેટ કરો. E40 = VCB ટ્રિપ, E42 = ટ્રેક્શન ઇન્વર્ટર ખામી."],
+        ["For E42, cut out the faulty traction unit from the display and continue with reduced traction if OCC allows.", "E42 માટે, ડિસ્પ્લે પરથી ખામીવાળું ટ્રેક્શન યુનિટ કટ-આઉટ કરો અને OCC મંજૂરી આપે તો ઓછા ટ્રેક્શન સાથે આગળ વધો."],
+        ["If traction is not restored, request a rescue train and prepare for coupling as instructed by OCC.", "ટ્રેક્શન પાછું ન આવે તો બચાવ ટ્રેનની વિનંતી કરો અને OCCની સૂચના મુજબ કપલિંગ માટે તૈયારી કરો."]
+      ]
+    },
+    {
+      "id": "brakes-not-releasing",
+      "type": "brake",
+      "page": 52,
+      "codes": ["BCU-E51", "BCU-E53"],
+      "equipment": ["Brake system", "બ્રેક સિસ્ટમ"],
+      "title": ["Brakes not releasing", "બ્રેક છૂટતી નથી"],
+      "symptoms": [
+        "Brake applied indicator stays on, train will not move, dragging brakes, burning smell, brake cylinder pressure high, parking brake stuck.",
+        "બ્રેક લાગેલી હોવાનો સૂચક ચાલુ રહે છે, ટ્રેન ચાલતી નથી, બ્રેક ઘસાય છે, બળવાની ગંધ, બ્રેક સિલિન્ડર પ્રેશર ઊંચું, પાર્કિંગ બ્રેક અટકી."
+      ],
+      "safety": [
+        ["Secure the train with the parking brake and inform OCC before going under the car.", "કારની નીચે જતાં પહેલાં પાર્કિંગ બ્રેકથી ટ્રેન સુરક્ષિત કરો અને OCCને જાણ કરો."],
+        ["Brake discs may be very hot; wear gloves.", "બ્રેક ડિસ્ક ખૂબ ગરમ હોઈ શકે છે; મોજાં પહેરો."]
+      ],
+      "tools": [
+        ["Gloves", "મોજાં"],
+        ["Torch", "ટોર્ચ"],
+        ["Brake isolation cock key", "બ્રેક આઇસોલેશન કૉક ચાવી"]
+      ],
+      "steps": [
+        ["Check the main reservoir pressure on the cab display; it must be above 7 bar.", "કેબ ડિસ્પ્લે પર મેઇન રિઝર્વોયર પ્રેશર તપાસો; તે 7 બારથી વધુ હોવું જોઈએ."],
+        ["Read the brake fault code. E51 = brake not released on one bogie, E53 = parking brake not released.", "બ્રેક ફોલ્ટ કોડ વાંચો. E51 = એક બોગી પર બ્રેક છૂટી નથી, E53 = પાર્કિંગ બ્રેક છૂટી નથી."],
+        ["Apply and release the brake handle fully twice, then reset the Brake Control Unit (BCU).", "બ્રેક હેન્ડલ બે વખત પૂરેપૂરું લગાવો અને છોડો, પછી બ્રેક કંટ્રોલ યુનિટ (BCU) રીસેટ કરો."],
+        ["For E53: pull the parking brake manual release ring on the affected bogie.", "E53 માટે: અસરગ્રસ્ત બોગી પર પાર્કિંગ બ્રેક મેન્યુઅલ રિલીઝ રિંગ ખેંચો."],
+        ["If one bogie still drags, isolate its brake with the isolation cock and confirm it on the display.", "જો એક બોગી હજુ ઘસાય, તો આઇસોલેશન કૉકથી તેની બ્રેક આઇસોલેટ કરો અને ડિસ્પ્લે પર ખાતરી કરો."],
+        ["Report the number of isolated brakes to OCC and follow the speed restriction for isolated brakes.", "આઇસોલેટ કરેલી બ્રેકની સંખ્યા OCCને જણાવો અને આઇસોલેટ બ્રેક માટેની ગતિ મર્યાદાનું પાલન કરો."]
+      ]
+    },
+    {
+      "id": "afc-gate",
+      "type": "afc",
+      "page": 58,
+      "codes": ["AFC-E61", "AFC-E64"],
+      "equipment": ["Ticket gate (AFC)", "ટિકિટ ગેટ (AFC)"],
+      "title": ["Ticket gate not accepting cards or tokens", "ટિકિટ ગેટ કાર્ડ કે ટોકન સ્વીકારતો નથી"],
+      "symptoms": [
+        "Gate flap not opening, card reader red light, token jammed, gate out of service, 'Seek assistance' message, smart card not read.",
+        "ગેટ ફ્લેપ ખૂલતો નથી, કાર્ડ રીડરમાં લાલ લાઇટ, ટોકન ફસાયું, ગેટ સેવા બહાર, 'સહાય મેળવો' સંદેશ, સ્માર્ટ કાર્ડ વંચાતું નથી."
+      ],
+      "safety": [
+        ["Set the gates to free-exit mode during an emergency evacuation.", "ઇમરજન્સીમાં સ્ટેશન ખાલી કરાવતી વખતે ગેટને ફ્રી-એક્ઝિટ મોડમાં મૂકો."]
+      ],
+      "tools": [
+        ["Gate maintenance key", "ગેટ મેન્ટેનન્સ ચાવી"],
+        ["Lint-free cloth", "લિન્ટ-ફ્રી કપડું"],
+        ["Test card", "ટેસ્ટ કાર્ડ"]
+      ],
+      "steps": [
+        ["Put the gate into maintenance mode with the key and read the code (E61 = card reader communication, E64 = token jam).", "ચાવીથી ગેટને મેન્ટેનન્સ મોડમાં મૂકો અને કોડ વાંચો (E61 = કાર્ડ રીડર કોમ્યુનિકેશન, E64 = ટોકન જામ)."],
+        ["Remove any jammed token from the token slot and the transport path.", "ટોકન સ્લોટ અને ટ્રાન્સપોર્ટ માર્ગમાંથી ફસાયેલું ટોકન કાઢો."],
+        ["Clean the card reader surface with a dry lint-free cloth.", "સૂકા લિન્ટ-ફ્રી કપડાથી કાર્ડ રીડરની સપાટી સાફ કરો."],
+        ["Check the network cable at the bottom of the gate; the station network LED should be green.", "ગેટના તળિયે નેટવર્ક કેબલ તપાસો; સ્ટેશન નેટવર્ક LED લીલી હોવી જોઈએ."],
+        ["Restart the gate from the maintenance menu and test with a test card in both directions.", "મેન્ટેનન્સ મેનૂમાંથી ગેટ ફરી ચાલુ કરો અને બંને દિશામાં ટેસ્ટ કાર્ડથી ચકાસો."],
+        ["If it still fails, set the gate to OUT OF SERVICE and log the fault on the station AFC computer.", "હજુ નિષ્ફળ જાય તો ગેટને OUT OF SERVICE પર મૂકો અને સ્ટેશન AFC કમ્પ્યુટર પર ખામી નોંધો."]
+      ]
+    },
+    {
+      "id": "sump-pump",
+      "type": "pump",
+      "page": 64,
+      "codes": ["PMP-E71", "PMP-E73"],
+      "equipment": ["Underground sump / drainage pump", "ભૂગર્ભ સમ્પ / ડ્રેનેજ પંપ"],
+      "title": ["Underground sump pump not starting / water accumulating", "ભૂગર્ભ સમ્પ પંપ ચાલુ થતો નથી / પાણી ભરાય છે"],
+      "symptoms": [
+        "Water level high alarm, pump not running, sump pit overflowing, flooding, float switch stuck, pump tripping, water on track.",
+        "પાણીનું ઊંચું લેવલ એલાર્મ, પંપ ચાલતો નથી, સમ્પ પિટ ઉભરાય છે, પાણી ભરાયું, ફ્લોટ સ્વિચ અટકી, પંપ ટ્રિપ થાય છે, ટ્રેક પર પાણી."
+      ],
+      "safety": [
+        ["Never enter the sump pit alone: it is a confined space and needs a gas test and a permit.", "સમ્પ પિટમાં ક્યારેય એકલા ન ઉતરો: તે બંધ જગ્યા છે અને ગેસ ટેસ્ટ તથા પરમિટ જરૂરી છે."],
+        ["Isolate pump power before touching the float switch or the pump.", "ફ્લોટ સ્વિચ કે પંપને સ્પર્શતાં પહેલાં પંપનો પાવર આઇસોલેટ કરો."]
+      ],
+      "tools": [
+        ["Gas detector", "ગેસ ડિટેક્ટર"],
+        ["LOTO kit", "LOTO કિટ"],
+        ["Multimeter", "મલ્ટિમીટર"],
+        ["Torch", "ટોર્ચ"]
+      ],
+      "steps": [
+        ["At the pump control panel, switch the duty pump to HAND and see whether it starts.", "પંપ કંટ્રોલ પેનલ પર ડ્યુટી પંપને HAND પર ફેરવો અને તે ચાલુ થાય છે કે નહીં તે જુઓ."],
+        ["If it starts in HAND, the float switch is stuck: isolate power and free the float from debris.", "જો HAND માં ચાલુ થાય, તો ફ્લોટ સ્વિચ અટકી છે: પાવર આઇસોલેટ કરો અને ફ્લોટને કચરામાંથી મુક્ત કરો."],
+        ["If it does not start, read the code (E71 = motor overload trip, E73 = phase failure) and reset the overload relay once.", "જો ચાલુ ન થાય, તો કોડ વાંચો (E71 = મોટર ઓવરલોડ ટ્રિપ, E73 = ફેઝ ફેલ્યોર) અને ઓવરલોડ રિલે એક વખત રીસેટ કરો."],
+        ["Start the standby pump to control the water level.", "પાણીનું લેવલ નિયંત્રિત કરવા સ્ટેન્ડબાય પંપ ચાલુ કરો."],
+        ["Check all three phase voltages at the panel (415 V ±10%) with a multimeter.", "મલ્ટિમીટરથી પેનલ પર ત્રણેય ફેઝ વોલ્ટેજ (415 V ±10%) તપાસો."],
+        ["If the overload trips again, keep the pump isolated, use the standby pump and inform the Station Controller and E&M control.", "ઓવરલોડ ફરી ટ્રિપ થાય તો પંપ આઇસોલેટ રાખો, સ્ટેન્ડબાય પંપ વાપરો અને સ્ટેશન કંટ્રોલર તથા E&M કંટ્રોલને જાણ કરો."]
+      ]
+    },
+    {
+      "id": "fire-panel-fault",
+      "type": "fire",
+      "page": 70,
+      "codes": ["FAP-T01", "FAP-T04"],
+      "equipment": ["Fire alarm control panel", "ફાયર એલાર્મ કંટ્રોલ પેનલ"],
+      "title": ["Fire alarm panel shows FAULT / trouble", "ફાયર એલાર્મ પેનલ ખામી (FAULT) બતાવે છે"],
+      "symptoms": [
+        "Fault LED yellow, buzzer on the fire panel, detector disconnected, loop fault, earth fault, battery fault, smoke detector missing.",
+        "ફોલ્ટ LED પીળી, ફાયર પેનલ પર બઝર, ડિટેક્ટર ડિસ્કનેક્ટ, લૂપ ખામી, અર્થ ફોલ્ટ, બેટરી ખામી, સ્મોક ડિટેક્ટર ગુમ."
+      ],
+      "safety": [
+        ["A FAULT is not a FIRE. If the FIRE LED is red, follow the station fire emergency procedure instead.", "ખામી (FAULT) એટલે આગ (FIRE) નહીં. જો FIRE LED લાલ હોય, તો તેના બદલે સ્ટેશન ફાયર ઇમરજન્સી પ્રક્રિયા અનુસરો."],
+        ["Do not disable any detector zone without permission from the Station Controller.", "સ્ટેશન કંટ્રોલરની પરવાનગી વગર કોઈ ડિટેક્ટર ઝોન બંધ ન કરો."]
+      ],
+      "tools": [
+        ["Panel access key", "પેનલ એક્સેસ ચાવી"],
+        ["Multimeter", "મલ્ટિમીટર"],
+        ["Detector removal tool", "ડિટેક્ટર કાઢવાનું સાધન"]
+      ],
+      "steps": [
+        ["Silence the buzzer and read the fault message and zone number on the panel.", "બઝર બંધ કરો અને પેનલ પર ખામી સંદેશ અને ઝોન નંબર વાંચો."],
+        ["T01 = device missing: go to the zone, check that the detector is seated in its base and re-seat it.", "T01 = ઉપકરણ ગુમ: ઝોનમાં જાઓ, ડિટેક્ટર તેના બેઝમાં બેઠેલું છે કે નહીં તપાસો અને ફરી બેસાડો."],
+        ["T04 = battery fault: check the standby battery terminals and voltage (should be about 27 V).", "T04 = બેટરી ખામી: સ્ટેન્ડબાય બેટરીના ટર્મિનલ અને વોલ્ટેજ (લગભગ 27 V હોવો જોઈએ) તપાસો."],
+        ["For loop or earth faults, check the junction boxes in the zone for water ingress (common in underground areas).", "લૂપ કે અર્થ ફોલ્ટ માટે, ઝોનના જંક્શન બોક્સમાં પાણી ઘૂસ્યું છે કે નહીં તપાસો (ભૂગર્ભ વિસ્તારોમાં સામાન્ય)."],
+        ["Press RESET on the panel; the fault LED should clear within 1 minute.", "પેનલ પર RESET દબાવો; ફોલ્ટ LED 1 મિનિટમાં બંધ થવી જોઈએ."],
+        ["If the fault returns, record it in the fire log book and inform the fire system maintainer.", "ખામી ફરી આવે તો ફાયર લૉગ બુકમાં નોંધો અને ફાયર સિસ્ટમ મેન્ટેનરને જાણ કરો."]
+      ]
+    },
+    {
+      "id": "pis-pa",
+      "type": "pis",
+      "page": 76,
+      "codes": ["PIS-E81", "PIS-E83"],
+      "equipment": ["Passenger information display / PA", "મુસાફર માહિતી ડિસ્પ્લે / PA"],
+      "title": ["Passenger information display blank or no PA audio", "મુસાફર માહિતી ડિસ્પ્લે બંધ અથવા PA માં અવાજ નથી"],
+      "symptoms": [
+        "Display blank, screen frozen, wrong station shown, no announcement audio, speaker crackling, public address not working.",
+        "ડિસ્પ્લે બંધ, સ્ક્રીન અટકી, ખોટું સ્ટેશન બતાવે છે, જાહેરાતનો અવાજ નથી, સ્પીકરમાં કડકડાટ, પબ્લિક એડ્રેસ ચાલતું નથી."
+      ],
+      "safety": [
+        ["Switch off the display supply breaker before opening the display housing.", "ડિસ્પ્લે હાઉસિંગ ખોલતાં પહેલાં ડિસ્પ્લે સપ્લાય બ્રેકર બંધ કરો."]
+      ],
+      "tools": [
+        ["PTU / laptop", "PTU / લેપટોપ"],
+        ["Screwdriver set", "સ્ક્રૂડ્રાઇવર સેટ"],
+        ["Spare fuse", "ફાજલ ફ્યુઝ"]
+      ],
+      "steps": [
+        ["Check whether one display or all displays are affected and note the car number.", "એક ડિસ્પ્લે કે બધા ડિસ્પ્લે પર અસર છે તે તપાસો અને કાર નંબર નોંધો."],
+        ["If all are blank, reset the PIS controller from the cab display (E81 = controller offline).", "જો બધા બંધ હોય, તો કેબ ડિસ્પ્લેથી PIS કંટ્રોલર રીસેટ કરો (E81 = કંટ્રોલર ઓફલાઇન)."],
+        ["If one display is blank, check its fuse and the supply breaker in the car's electrical cabinet.", "જો એક ડિસ્પ્લે બંધ હોય, તો કારની ઇલેક્ટ્રિકલ કેબિનેટમાં તેનો ફ્યુઝ અને સપ્લાય બ્રેકર તપાસો."],
+        ["For no audio (E83 = amplifier fault), check the amplifier status LED and the volume setting.", "અવાજ ન હોય તો (E83 = એમ્પ્લીફાયર ખામી), એમ્પ્લીફાયરની સ્ટેટસ LED અને વોલ્યુમ સેટિંગ તપાસો."],
+        ["Make a test announcement from the cab and listen in each car.", "કેબમાંથી ટેસ્ટ જાહેરાત કરો અને દરેક કારમાં સાંભળો."],
+        ["If not fixed, inform OCC so that manual announcements can be made, and log the fault.", "ઠીક ન થાય તો OCCને જાણ કરો જેથી મેન્યુઅલ જાહેરાત થઈ શકે, અને ખામી નોંધો."]
+      ]
+    },
+    {
+      "id": "tunnel-fan-vibration",
+      "type": "tvf",
+      "page": 82,
+      "codes": ["TVF-E91", "TVF-E93"],
+      "equipment": ["Tunnel ventilation fan", "ટનલ વેન્ટિલેશન પંખો"],
+      "title": ["Tunnel ventilation fan high vibration", "ટનલ વેન્ટિલેશન પંખામાં વધુ કંપન"],
+      "symptoms": [
+        "Vibration alarm, fan tripped, loud noise from the fan, bearing temperature high, fan not starting, shaking.",
+        "કંપન એલાર્મ, પંખો ટ્રિપ, પંખામાંથી મોટો અવાજ, બેરિંગ તાપમાન ઊંચું, પંખો ચાલુ થતો નથી, ધ્રુજારી."
+      ],
+      "safety": [
+        ["Tunnel fans are part of the fire safety system: inform OCC before taking a fan out of service.", "ટનલ પંખા ફાયર સેફ્ટી સિસ્ટમનો ભાગ છે: પંખો સેવામાંથી બહાર લેતાં પહેલાં OCCને જાણ કરો."],
+        ["Apply LOTO and wait for the fan to stop completely before opening the access door.", "LOTO લગાવો અને એક્સેસ દરવાજો ખોલતાં પહેલાં પંખો સંપૂર્ણ બંધ થાય ત્યાં સુધી રાહ જુઓ."]
+      ],
+      "tools": [
+        ["LOTO kit", "LOTO કિટ"],
+        ["Vibration meter", "વાઇબ્રેશન મીટર"],
+        ["Infrared thermometer", "ઇન્ફ્રારેડ થર્મોમીટર"],
+        ["Torch", "ટોર્ચ"]
+      ],
+      "steps": [
+        ["Read the alarm on the BMS / SCADA screen: E91 = vibration high, E93 = bearing temperature high.", "BMS / SCADA સ્ક્રીન પર એલાર્મ વાંચો: E91 = વધુ કંપન, E93 = બેરિંગનું ઊંચું તાપમાન."],
+        ["Inform OCC and switch the fan to LOCAL STOP; start the standby fan if one is available.", "OCCને જાણ કરો અને પંખાને LOCAL STOP પર ફેરવો; ઉપલબ્ધ હોય તો સ્ટેન્ડબાય પંખો ચાલુ કરો."],
+        ["Apply LOTO, open the access door and check the blades for damage or debris and the mounting bolts for looseness.", "LOTO લગાવો, એક્સેસ દરવાજો ખોલો અને બ્લેડમાં નુકસાન કે કચરો તથા માઉન્ટિંગ બોલ્ટ ઢીલા છે કે નહીં તપાસો."],
+        ["Measure the bearing temperature with the infrared thermometer (alarm above 85 °C).", "ઇન્ફ્રારેડ થર્મોમીટરથી બેરિંગ તાપમાન માપો (85 °Cથી ઉપર એલાર્મ)."],
+        ["Remove debris, tighten loose bolts, remove LOTO and run the fan; vibration should be below 4.5 mm/s.", "કચરો દૂર કરો, ઢીલા બોલ્ટ કસો, LOTO દૂર કરો અને પંખો ચલાવો; કંપન 4.5 mm/s થી ઓછું હોવું જોઈએ."],
+        ["If vibration stays high, keep the fan isolated and raise a work order for bearing replacement.", "કંપન ઊંચું રહે તો પંખો આઇસોલેટ રાખો અને બેરિંગ બદલવા માટે વર્ક ઓર્ડર બનાવો."]
+      ]
+    },
+    {
+      "id": "aux-battery-low",
+      "type": "aps",
+      "page": 88,
+      "codes": ["APS-E33", "APS-E35"],
+      "equipment": ["Auxiliary power supply / battery", "ઓક્ઝિલરી પાવર સપ્લાય / બેટરી"],
+      "title": ["Auxiliary power / battery low voltage", "ઓક્ઝિલરી પાવર / બેટરીનો ઓછો વોલ્ટેજ"],
+      "symptoms": [
+        "Battery voltage low, lights dimming, cab display reboots, auxiliary converter (SIV) fault, train will not wake up, charger fault.",
+        "બેટરી વોલ્ટેજ ઓછો, લાઇટ ઝાંખી, કેબ ડિસ્પ્લે ફરી ચાલુ થાય છે, ઓક્ઝિલરી કન્વર્ટર (SIV) ખામી, ટ્રેન ચાલુ થતી નથી, ચાર્જર ખામી."
+      ],
+      "safety": [
+        ["Battery boxes carry high DC current: remove rings and watches and use insulated tools.", "બેટરી બોક્સમાં ઊંચો DC કરંટ હોય છે: વીંટી અને ઘડિયાળ કાઢો અને ઇન્સ્યુલેટેડ સાધનો વાપરો."]
+      ],
+      "tools": [
+        ["Insulated tools", "ઇન્સ્યુલેટેડ સાધનો"],
+        ["Multimeter", "મલ્ટિમીટર"],
+        ["PTU / laptop", "PTU / લેપટોપ"]
+      ],
+      "steps": [
+        ["Read the battery voltage on the cab display (normal 110 V; alarm below 90 V).", "કેબ ડિસ્પ્લે પર બેટરી વોલ્ટેજ વાંચો (સામાન્ય 110 V; 90 Vથી ઓછો હોય તો એલાર્મ)."],
+        ["Check the auxiliary converter (SIV) status: E33 = SIV output fault, E35 = battery charger fault.", "ઓક્ઝિલરી કન્વર્ટર (SIV)ની સ્થિતિ તપાસો: E33 = SIV આઉટપુટ ખામી, E35 = બેટરી ચાર્જર ખામી."],
+        ["Reset the SIV once from the cab display while the pantograph is up and line voltage is present.", "પેન્ટોગ્રાફ ઊંચો હોય અને લાઇન વોલ્ટેજ હાજર હોય ત્યારે કેબ ડિસ્પ્લેથી SIV એક વખત રીસેટ કરો."],
+        ["Switch off non-essential loads (saloon lights to half mode, HVAC to ventilation) to save the battery.", "બેટરી બચાવવા બિન-જરૂરી લોડ બંધ કરો (સલૂન લાઇટ અડધા મોડમાં, HVAC વેન્ટિલેશન પર)."],
+        ["Check the battery main fuse and terminals for corrosion or looseness, using insulated tools.", "ઇન્સ્યુલેટેડ સાધનોથી બેટરી મેઇન ફ્યુઝ અને ટર્મિનલમાં કાટ કે ઢીલાપણું તપાસો."],
+        ["If the voltage keeps falling, inform OCC; the train should be withdrawn before the battery drops below 84 V.", "જો વોલ્ટેજ ઘટતો રહે તો OCCને જાણ કરો; બેટરી 84 Vથી નીચે જાય તે પહેલાં ટ્રેન પાછી ખેંચવી જોઈએ."]
+      ]
+    }
+  ]
+}
