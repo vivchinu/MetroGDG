@@ -49,22 +49,37 @@ export function canSpeak() {
   return 'speechSynthesis' in self;
 }
 
+// Browsers only let speech play after a user gesture. Presses inside an XR
+// session are not DOM clicks, so call this from the click that enters it.
+export function unlockSpeech() {
+  if (!canSpeak()) return;
+  const u = new SpeechSynthesisUtterance(' ');
+  u.volume = 0;
+  speechSynthesis.speak(u);
+}
+
 export async function speak(text, lang) {
   if (!canSpeak()) return;
   speechSynthesis.cancel();
   const all = await voices();
   const tag = BCP47[lang];
-  const voice = all.find((v) => v.lang === tag && v.localService)
+  const match = all.find((v) => v.lang === tag && v.localService)
     || all.find((v) => v.lang === tag)
     || all.find((v) => v.lang.startsWith(lang) && v.localService)
     || all.find((v) => v.lang.startsWith(lang));
+  // Headsets often ship no voice for the requested language. An utterance with
+  // no playable voice is silent, so fall back to the default voice instead.
+  const voice = match || all.find((v) => v.default) || all[0];
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = tag;
+  u.lang = match ? tag : voice?.lang || tag;
   if (voice) u.voice = voice;
   u.rate = 0.95;
   return new Promise((resolve) => {
     u.onend = resolve;
-    u.onerror = resolve;
+    u.onerror = (e) => {
+      console.warn('Read aloud failed:', e.error);
+      resolve();
+    };
     speechSynthesis.speak(u);
   });
 }

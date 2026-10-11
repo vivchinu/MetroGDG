@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from '../../vendor/three/addons/OrbitControls.js';
 import { getLang, onLangChange, setLang, toGuDigits } from '../i18n.js';
-import { speak } from '../speech.js';
+import { speak, unlockSpeech } from '../speech.js';
 import { BCU, BrakeSession, L, loadReports } from './procedure.js';
 import { BrakeUnitModel } from './model.js';
 import { ui } from './panels.js';
@@ -250,6 +250,7 @@ function toast(msg, ms = 3000) {
 
 // ---------- mixed reality ----------
 $('#btn-mr').addEventListener('click', async () => {
+  unlockSpeech();
   try {
     await startMR({
       renderer, scene, camera, model, session,
